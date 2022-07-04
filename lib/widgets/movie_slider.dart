@@ -42,9 +42,9 @@ class _MoviePoster extends StatelessWidget {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: ()=>Navigator.pushNamed(context, "details",arguments: "argumentos"),
+                    onTap: ()=>Navigator.pushNamed(context, "details",arguments: "movie-instance"),
                     child: ClipRRect(//para ponerle bordes redondeados
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(18),
                       child: const FadeInImage(
                           placeholder: AssetImage("assets/images/no-image.jpg"),
                           image: NetworkImage("https://via.placeholder.com/300x400"),
@@ -56,7 +56,7 @@ class _MoviePoster extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                      "Terminartor: El juicio finaldfgsdfgsdfgsdgfsdfg",
+                      "Terminator: El juicio final y la rebelión de las máquinas",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,//muestra ... como que falta texto
                       textAlign: TextAlign.justify,
