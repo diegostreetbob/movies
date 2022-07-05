@@ -58,3 +58,22 @@ class MovieSlider extends StatelessWidget {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ```
 
+# themoviesdb.api
+
+### Clave de la API (v3 auth)
+
+5fe5efe957ab22167841b4e432fe5d30
+
+### Ejemplo de solicitud de API
+
+https://api.themoviedb.org/3/movie/550?api_key=5fe5efe957ab22167841b4e432fe5d30
+
+### Token de acceso de lectura a la API (v4 auth)
+
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmU1ZWZlOTU3YWIyMjE2Nzg0MWI0ZTQzMmZlNWQzMCIsInN1YiI6IjYyYzMxYjExMjJlNDgwMmFiMzdjYTY4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WyrR8aDLVvx1aoJUlq8iuxflyXVelGtVFnSWiY7nOHk
+
+
+
+
+
+https://api.themoviedb.org/3/movie/now_playing?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
