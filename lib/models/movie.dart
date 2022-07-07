@@ -1,8 +1,14 @@
+/*
+Este código ha sido generado automáticamente por https://app.quicktype.io/ a la cual se le ha pegado
+el Json respuesta que nos ha dado Postman
+*/
+////////////////////////////////////////////////////////////////////////////////////////////////////
 import 'dart:convert';
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 class Movie {
+  //atributos
+  final String _posterImgUrl = "https://image.tmdb.org/t/p/w500";
+  //
   Movie({
     required this.adult,
     this.backdropPath,
@@ -53,6 +59,13 @@ class Movie {
     voteAverage     : json["vote_average"].toDouble(),
     voteCount       : json["vote_count"],
   );
-
+  //getter
+  String get posterImgUrl{
+    if(posterPath != null){
+      return _posterImgUrl+posterPath!;
+    }else{
+      return "https://via.placeholder.com/300x400";
+    }
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
