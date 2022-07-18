@@ -7,9 +7,11 @@ class MoviesService extends ChangeNotifier{
   //atributos
   //https://api.themoviedb.org/3/movie/now_playing?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
   //https://api.themoviedb.org/3/movie/popular?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
+  //https://api.themoviedb.org/3/movie/453395/credits?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
   final String _baseUrl  = "api.themoviedb.org";
   final String _apiEndOnDisplayMovies   = "3/movie/now_playing";
   final String _apiEndPopularMovies   = "3/movie/popular";
+  final String _apiEndCasting = "3/movie/";
   final String _apiKey   = "5fe5efe957ab22167841b4e432fe5d30";
   final String _language = "es-ES";
   final String _page     = "1";
@@ -18,6 +20,8 @@ class MoviesService extends ChangeNotifier{
   List<Movie> onDisplayMovies = [];//inicializado como listado vacio al que tendremos acceso desde
   //cualquier parte ya que la clase extiende de ChangeNotifier
   List<Movie> popularMovies = [];//inicializado como listado vacio al que tendremos acceso desde
+  //cualquier parte ya que la clase extiende de ChangeNotifier
+  Map<int,List<Cast>> movieCasting = {};//inicializado como listado vacio al que tendremos acceso desde
   //cualquier parte ya que la clase extiende de ChangeNotifier
   //Constructor
   MoviesService(){
@@ -34,6 +38,24 @@ class MoviesService extends ChangeNotifier{
     onDisplayMovies = nowPlayingResponse.results;
     notifyListeners();//notifica a los listeners implicados que se redibujen
   }
+  //Casting de actores
+  Future<Map<int, List<Cast>>> getMovieCasting(int movieId) async {
+    print("pidiendo el casting al servidor");
+    //verificamos que no esté en el mapa de una carga anterior
+    if(!movieCasting.containsKey(movieId)) {
+      print("$movieId no está previmante cargada");
+      String endPoint = _apiEndCasting + "$movieId" +
+          "/credits"; //contatenado es igual que string+string
+      final response = await _getJsonData(endPoint, 1, _apiKey, _language);
+      final castingResponse = CastingResponse.fromJson(response);
+      //guardamos en el mapa
+      movieCasting[movieId] = castingResponse.cast;
+      return movieCasting;
+    }else{
+      print("$movieId si está previmante cargada");
+      return movieCasting;
+    }
+  }
   //Peliculas populares
   getPopularMovies() async{
     _polularPage++;
@@ -45,6 +67,7 @@ class MoviesService extends ChangeNotifier{
     popularMovies = [...popularMovies,...popularResponse.results];
     notifyListeners();//notifica a los listeners implicados que se redibujen
   }
+
   //método privado utilitario
   Future<String> _getJsonData(String apiEnd,int page,String apiKey, String language) async{
     var url = Uri.https(this._baseUrl, apiEnd,

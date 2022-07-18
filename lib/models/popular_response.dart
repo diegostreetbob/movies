@@ -1,6 +1,7 @@
 /*
 Este código ha sido generado automáticamente por https://app.quicktype.io/ a la cual se le ha pegado
 el Json respuesta que nos ha dado Postman
+https://api.themoviedb.org/3/movie/popular?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import 'dart:convert';

@@ -28,10 +28,13 @@ class HomeScreen extends StatelessWidget {
       //La columna nos permite apilar widgets
       body: Column(
         children: [
-          const SizedBox(height: 15),
+          //const SizedBox(height: 5),
           CardSwiper(movies: moviesProvider.onDisplayMovies),//tarjetas principales
-          const SizedBox(height: 20),
-          MovieSlider(popularMovies: moviesProvider.popularMovies),//Slider de películas
+          //const SizedBox(height: 5),
+          MovieSlider(
+              popularMovies: moviesProvider.popularMovies,
+              onNextPage:()=>moviesProvider.getPopularMovies()
+          ),//Slider de películas
         ],
 
       ),
