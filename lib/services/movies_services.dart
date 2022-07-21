@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import 'package:http/http.dart' as http;
 import 'package:movies/models/models.dart';
+import 'package:movies/models/search_response.dart';
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 class MoviesService extends ChangeNotifier{
   //atributos
   //https://api.themoviedb.org/3/movie/now_playing?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
   //https://api.themoviedb.org/3/movie/popular?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
   //https://api.themoviedb.org/3/movie/453395/credits?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1
+  //https://api.themoviedb.org/3/search/movie?api_key=5fe5efe957ab22167841b4e432fe5d30&language=es-ES&page=1&query=Batman
   final String _baseUrl  = "api.themoviedb.org";
   final String _apiEndOnDisplayMovies   = "3/movie/now_playing";
   final String _apiEndPopularMovies   = "3/movie/popular";
   final String _apiEndCasting = "3/movie/";
+  final String _apiEndSearch = "3/search/movie";
   final String _apiKey   = "5fe5efe957ab22167841b4e432fe5d30";
   final String _language = "es-ES";
   final String _page     = "1";
@@ -81,7 +84,19 @@ class MoviesService extends ChangeNotifier{
     final response = await http.get(url);
     return response.body;
   }
-
-
+  //Búsqueda
+  Future <List<Movie>> searchMovies( String query) async{
+    final url = Uri.https(this._baseUrl, this._apiEndSearch,
+        { //mismo parámetros que se envian con postman
+          "api_key" : this._apiKey,
+          "language": this._language,
+          "query"    : query//conversión a string
+        }
+    );
+    // Await the http get response, then decode the json-formatted response.
+    final response = await http.get(url);
+    final searchResponse = SearchResponse.fromJson(response.body);
+    return searchResponse.results;
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////

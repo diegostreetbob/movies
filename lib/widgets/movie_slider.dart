@@ -25,7 +25,7 @@ class MovieSlider extends StatelessWidget {
         return Container(
         //color: Colors.green,
         width: double.infinity,//para que ocupe todo el ancho
-        height: screenDim.height*0.30,//x% de la pantalla, va en unión con el mismo parámetro del
+        height: screenDim.height*0.28,//x% de la pantalla, va en unión con el mismo parámetro del
         //cardswiper
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class MovieSlider extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child:Text("Populares",style: TextStyle(fontWeight: FontWeight.bold))
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 1),
             _MoviePoster(popularMovies: popularMovies,onNextPage: onNextPage)
           ],
         ),
@@ -95,7 +95,7 @@ class _MoviePosterState extends State<_MoviePoster> {
                       child: FadeInImage(
                           placeholder: const AssetImage("assets/images/no-image.jpg"),
                           image: NetworkImage(movie.posterImgUrl),
-                          height: 160,
+                          height: 150,
                           fit: BoxFit.fill
                       ),
                     ),
@@ -104,7 +104,7 @@ class _MoviePosterState extends State<_MoviePoster> {
                   width: 100,
                   child: Text(
                     movie.overview,
-                    maxLines: 3,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis, //muestra ... como que falta texto
                     textAlign: TextAlign.justify,
                   ),

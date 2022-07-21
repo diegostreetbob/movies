@@ -49,8 +49,6 @@ class CardSwiper extends StatelessWidget {
               ),
             );
           },
-
-
         ),
 
       );

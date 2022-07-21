@@ -30,7 +30,7 @@ class CastingCard extends StatelessWidget {
              final Map<int, List<Cast>> casting= snapshot.data!;
              //
              return Container(
-                 margin: const EdgeInsets.only(bottom: 10), //margen abajo
+                 margin: const EdgeInsets.only(bottom: 5), //margen abajo
                  width: double.infinity,
                  child: ListView.builder(
                      itemCount: casting[_movie.id]?.length,
